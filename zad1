@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<form action="" method="post">
+    <label for="bok1">Bok 1:</label><br>
+    <input type="number" name="bok1"><br>
+    <label for="bok2">Bok 2:</label><br>
+    <input type="number" name="bok2"><br>
+    <button type="submit">Submit</button>
+</form>
+
+<?php
+class Prostokat{
+    public $bok1,$bok2;
+    public function construct() {
+        $this->bok1 = 5;
+        $this->bok2 = 8;
+    }
+    function wypisz(){
+        echo "boki prostokata wynosza: $this->bok1, $this->bok2 cm.</br>"; 
+    }
+    function pole(){
+        $c = $this->bok1*$this->bok2;
+        echo "pole prostokata wynosi: $c cm.</br>";
+    }
+}
+class kwadrat extends Prostokat{
+    public $kolorWypelnienia;
+
+    public function construct($kolor) {
+        $this->kolorWypelnienia = $kolor;
+    }
+    function wypisz1(){
+        echo "kolor wypelnienia: $this->kolorWypelnienia </br>";
+    }
+}
+
+$prostokat1 = new Prostokat();
+$prostokat1->wypisz();
+$prostokat1->pole();
+
+echo "</br>prostokat2</br></br>";
+
+$prostokat2 = new Prostokat();
+$b1 = $_POST['bok1'];
+$b2 = $_POST['bok2'];
+$prostokat2->bok1 = $b1;
+$prostokat2->bok2 = $b2;
+$prostokat2->wypisz();
+$prostokat2->pole();
+
+$plik = fopen('2.txt','r');
+$bok1 = fgets($plik);
+$bok2 = fgets($plik);
+$kolor = fgets($plik);
+
+echo "</br>kwadrat</br></br>";
+
+
+$kwadrat1 = new kwadrat($kolor);
+$kwadrat1->bok1 = $bok1;
+$kwadrat1->bok2 = $bok2;
+
+$kwadrat1->wypisz1();
+$kwadrat1->pole();
+$kwadrat1->wypisz();
+
+
+?>
+</body>
+</html>
